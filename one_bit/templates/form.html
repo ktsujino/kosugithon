@@ -1,0 +1,22 @@
+<html>
+  <body>
+    <img height="140" src="http://210.140.71.170:8000/static/cosugithon_logo-01.png" />
+    <h2>ユーザとうろく</h2>
+    <form action="/set" method="get" >
+      username (alphabet only): <input type="text" name="username" id="username" size="40" /> <br />
+      <input type="radio" name="teach" value="True">教えたい </input> 
+      <input type="radio" name="teach" value="False">教わりたい </input> <br />
+      何を (日本語OK): <input type="text" name="description" id="description" size="100" /><br />
+      <input type="radio" name="atcafe" value="True">今カフェにいます </input>
+      <input type="radio" name="atcafe" value="False" checked>いません </input> <br />
+      <input type="submit" value="送信!"</input>
+    </form>
+    <br />
+    <h2>ユーザしょうきょ</h2>
+    <form action="/delete" method="get" >
+      username (alphabet only): <input type="text" name="username" id="username" size="40" /> <br />
+      <input type="submit" value="送信;_;"</input>
+    </form>
+  </body>
+</html>
+

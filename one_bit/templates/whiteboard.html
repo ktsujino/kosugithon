@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+      function update_people(type) {
+        $.get('http://210.140.71.170:8000/get_people', function(data) {
+          put_content = ''
+          json = JSON.parse(data)
+          for(i in json[type]) {
+            person = json[type][i]
+            put_content += '　<font size="6" color="#ffffff">- ' + person.username + 'さん　　　' + person.description + '</font>'
+            if(person.atcafe == 'True') {
+              put_content += '<font size="6" color="#ff0000">　　　今カフェにいます!!</font>'
+            }
+            put_content += '<br />'
+          }
+        $('.' + type).html(put_content)
+        })
+      }
+      
+      function update_presence(username) {
+        $.get('http://210.140.71.170:8000/get?username=' + username, function(data) {
+          json = JSON.parse(data)
+          if(json['atcafe'] == 'True') { 
+            $('.presence_' + username).text('今cafeにいます!!')
+          }else {
+            $('.presence_' + username).text('')
+          }
+        })
+      }
+      $(function(){
+        setInterval(function(){
+          update_people('teachers')
+          update_people('students')
+        },1000);
+      });
+    </script>
+  </head>
+  <body>
+    <img height="140" src="http://210.140.71.170:8000/static/cosugithon_logo-01.png" />
+    <table width="1200" bordercolor="#000000" cellspacing="4" border="1" bgcolor="#804040" height="200">
+      <tr>
+	<td bgcolor="#004000">
+	  <table border="0" width="100%" height="100%" cellpadding="6">
+	    <tr>
+	      <td valign="top">
+		<font size="6" color="#ffffff">
+		  なにか教えられるひと<br />
+		</font>
+		  <div class="teachers"> </div>
+		  <br />
+		<font size="6" color="#ffffff">
+		  なにか教えてほしいひと<br />
+		</font>
+		  <div class="students"> </div>
+	      </td>
+	      <!--
+	      <td width="60" valign="top" align="center">
+		<font color="#ffffff"><b>○<br />月<br />×<br />日<br />△<br />曜<br />日<br /><br />日直<br /><br />鈴佐<br />木藤</b></font><br />
+	      </td>
+	      -->
+	    </tr>
+	  </table>
+	</td>
+      </tr>
+    </table>
+    </br>
+    <font size="6">登録ページはこちら: <a href="http://210.140.71.170:8000/form">http://210.140.71.170:8000/form</a></font><br >
+    <img height="200" src="http://210.140.71.170:8000/static/QRcode.gif" />
+  </body>
+</html>

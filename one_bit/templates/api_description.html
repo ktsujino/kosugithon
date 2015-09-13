@@ -1,0 +1,19 @@
+API description <br />
+
+- set <br />
+ユーザがカフェにきたとき http://210.140.71.170:8000/set?username=shimizu&atcafe=True <br />
+ユーザがカフェからいなくなったとき http://210.140.71.170:8000/set?username=shimizu&atcafe=False <br />
+ユーザを登録するとき・ユーザが教えたいことや教わりたいことを変更するとき <br />
+例1 おそわる: http://210.140.71.170:8000/set?username=tsujino&description=トランペットの吹き方&teach=False <br />
+例2 おしえる: http://210.140.71.170:8000/set?username=shimizu&atcafe=False&description=プロジェクトマネジメント入門&teach=True <br />
+ <br />
+- get <br />
+例: http://210.140.71.170:8000/set?username=shimizu <br />
+知らないユーザについては以下だけを返す <br />
+http://210.140.71.170:8000/get?username=foo -> {"username" : "foo", "atcafe" : "False"} <br />
+知ってるユーザについては以下を返す <br />
+http://210.140.71.170:8000/get?username=shimizu -> {"username" : "shimizu", "atcafe" : "False", "description": "プロジェクトマネジメント入門", "teach" : "True"} <br />
+ <br />
+- get_people <br />
+引数なし。  <br />
+http://210.140.71.170:8000/get_people -> {"teachers" : "[shimizu]", "students" : "[tsujino]"} <br />
